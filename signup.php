@@ -1,5 +1,7 @@
 <?php
 
+$pwd = sha1($_POST["password"]);
+
 $connection=new mysqli("localhost","root","","student");
 $statment=$connection->prepare("select * from users where email=?");
 $statment->bind_param("s",$_POST["email"]);
@@ -8,7 +10,7 @@ $resultset=$statment->get_result();
 if($resultset->num_rows==0)
 {
      $statment=$connection->prepare("insert into users values(?,?,?,?)");
-     $statment->bind_param("sssss", $_POST["firstname"],$_POST["lastname"],$_POST["email"],$_POST["password"]);
+     $statment->bind_param("sssss", $_POST["first_name"],$_POST["last_name"],$_POST["email"],$pwd);
      $statment->execute();
      echo 1;
 }
