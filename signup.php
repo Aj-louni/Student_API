@@ -10,7 +10,7 @@ $resultset=$statment->get_result();
 if($resultset->num_rows==0)
 {
      $statment=$connection->prepare("insert into users values(?,?,?,?)");
-     $statment->bind_param("sssss", $_POST["first_name"],$_POST["last_name"],$_POST["email"],$pwd);
+     $statment->bind_param("ssss", $_POST["first_name"],$_POST["last_name"],$_POST["email"],$pwd);
      $statment->execute();
      echo 1;
 }
